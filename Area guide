@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area Guide - Edinburgh Retreats</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: #ffffff;
+            padding: 20px 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #0066cc;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 40px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+        
+        /* Search Bar Container */
+        .search-container {
+            max-width: 1200px;
+            margin: -40px auto 0;
+            padding: 0 40px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+        
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Neighbourhood Grid */
+        .neighbourhood-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .neighbourhood-card {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .neighbourhood-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .neighbourhood-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        
+        .neighbourhood-content {
+            padding: 32px;
+        }
+        
+        .neighbourhood-content h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+        }
+        
+        .neighbourhood-content p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .neighbourhood-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .highlight-tag {
+            background: #f0f0f0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .browse-btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .browse-btn:hover {
+            background: #5568d3;
+        }
+        
+        /* Why Edinburgh Section */
+        .why-edinburgh {
+            background: #f8f9fa;
+            padding: 80px 40px;
+            margin: 80px 0;
+        }
+        
+        .why-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .why-item {
+            text-align: center;
+        }
+        
+        .why-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .why-item h4 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .why-item p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+        
+        .cta-section p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 18px 48px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            transition: transform 0.3s;
+        }
+        
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .footer p {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .neighbourhood-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                gap: 20px;
+                font-size: 16px;
+            }
+            
+            .navbar {
+                padding: 16px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="https://www.edinburghretreats.com" class="logo">Edinburgh Retreats</a>
+            <ul class="nav-links">
+                <li><a href="https://www.edinburghretreats.com">Home</a></li>
+                <li><a href="https://www.edinburghretreats.com/properties">Properties</a></li>
+                <li><a href="https://www.edinburghretreats.com/area-guide" class="active">Area Guide</a></li>
+                <li><a href="https://www.edinburghretreats.com/about">About</a></li>
+                <li><a href="https://www.edinburghretreats.com/contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Discover Edinburgh</h1>
+        <p>From historic Old Town to vibrant Leith, explore the neighbourhoods that make Scotland's capital truly special</p>
+    </section>
+
+    <!-- Hostaway Search Bar -->
+    <div class="search-container">
+        <div id="hostaway-search-widget"></div>
+    </div>
+
+    <!-- Neighbourhoods Section -->
+    <div class="container">
+        <h2 class="section-title">Explore Our Neighbourhoods</h2>
+        <p class="section-subtitle">Each area of Edinburgh has its own unique character. Find the perfect location for your stay.</p>
+        
+        <div class="neighbourhood-grid">
+            
+            <!-- Old Town -->
+            <div class="neighbourhood-card">
+                <img src="https://images.unsplash.com/photo-1555881603-3b2c46c1b6e6?w=800&q=80" alt="Edinburgh Old Town" class="neighbourhood-image">
+                <div class="neighbourhood-content">
+                    <h3>Old Town</h3>
+                    <p>The historic heart of Edinburgh with cobbled streets, medieval architecture, and iconic landmarks like Edinburgh Castle and the Royal Mile.</p>
+                    <div class="neighbourhood-highlights">
+                        <span class="highlight-tag">🏰 Historic Sites</span>
+                        <span class="highlight-tag">🎭 Cultural Hub</span>
+                        <span class="highlight-tag">🍽️ Restaurants</span>
+                    </div>
+                    <a href="https://www.edinburghretreats.com/properties?area=old-town" class="browse-btn" target="_blank">Browse Properties</a>
+                </div>
+            </div>
+
+            <!-- New Town -->
+            <div class="neighbourhood-card">
+                <img src="https://images.unsplash.com/photo-1599930113854-d6d7fd521f10?w=800&q=80" alt="Edinburgh New Town" class="neighbourhood-image">
+                <div class="neighbourhood-content">
+                    <h3>New Town</h3>
+                    <p>Georgian elegance meets modern sophistication. Wide streets, designer shops on George Street, and stunning architecture.</p>
+                    <div class="neighbourhood-highlights">
+                        <span class="highlight-tag">🏛️ Georgian Architecture</span>
+                        <span class="highlight-tag">🛍️ Shopping</span>
+                        <span class="highlight-tag">☕ Cafés</span>
+                    </div>
+                    <a href="https://www.edinburghretreats.com/properties?area=new-town" class="browse-btn" target="_blank">Browse Properties</a>
+                </div>
+            </div>
+
+            <!-- Stockbridge -->
+            <div class="neighbourhood-card">
+                <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&q=80" alt="Stockbridge Edinburgh" class="neighbourhood-image">
+                <div class="neighbourhood-content">
+                    <h3>Stockbridge</h3>
+                    <p>Bohemian village feel with independent boutiques, artisan coffee shops, and the beautiful Water of Leith walkway.</p>
+                    <div class="neighbourhood-highlights">
+                        <span class="highlight-tag">🌳 Riverside Walks</span>
+                        <span class="highlight-tag">🎨 Independent Shops</span>
+                        <span class="highlight-tag">🥐 Farmers Market</span>
+                    </div>
+                    <a href="https://www.edinburghretreats.com/properties?area=stockbridge" class="browse-btn" target="_blank">Browse Properties</a>
+                </div>
+            </div>
+
+            <!-- Leith -->
+            <div class="neighbourhood-card">
+                <img src="https://images.unsplash.com/photo-1523968098963-faaf4a40b241?w=800&q=80" alt="Leith Edinburgh" class="neighbourhood-image">
+                <div class="neighbourhood-content">
+                    <h3>Leith</h3>
+                    <p>Edinburgh's thriving waterfront district with Michelin-starred restaurants, creative galleries, and the Royal Yacht Britannia.</p>
+                    <div class="neighbourhood-highlights">
+                        <span class="highlight-tag">⚓ Waterfront</span>
+                        <span class="highlight-tag">🍴 Fine Dining</span>
+                        <span class="highlight-tag">🎨 Arts Scene</span>
+                    </div>
+                    <a href="https://www.edinburghretreats.com/properties?area=leith" class="browse-btn" target="_blank">Browse Properties</a>
+                </div>
+            </div>
+
+            <!-- Bruntsfield -->
+            <div class="neighbourhood-card">
+                <img src="https://images.unsplash.com/photo-1552667466-07770ae110d0?w=800&q=80" alt="Bruntsfield Edinburgh" class="neighbourhood-
+v
